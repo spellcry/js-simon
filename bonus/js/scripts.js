@@ -17,6 +17,8 @@ console.log(dotsEl);
 
 // prendo elemento 'slides-wrapper'
 const slidesWrapperEl = document.querySelector('.slides-wrapper');
+slidesWrapperEl.addEventListener('mouseenter', slidesWrapperHover);
+slidesWrapperEl.addEventListener('mouseleave', slidesWrapperLeave);
 slidesWrapperEl.innerHTML = '';
 
 for ( let i = 0; i < slides.length; i++ ) {
@@ -66,7 +68,9 @@ for ( let i = 0; i < slides.length; i++ ) {
 
 const nextArrowEl = document.querySelector('.arrow-next');
 
-nextArrowEl.addEventListener('click', function() {
+
+// funzione che gestisce il click della freccia avanti
+function nextArrowClick() {
     const activeEl = document.querySelector('.slide.active');
     activeEl.classList.remove('active');
     const activeDotEl = dotsEl.querySelector('.active');
@@ -84,11 +88,14 @@ nextArrowEl.addEventListener('click', function() {
         //dot
         firstDot.classList.add('active');
     }
-});
+}
+
+nextArrowEl.addEventListener('click', nextArrowClick);
 
 const prevArrowEl = document.querySelector('.arrow-prev');
 
-prevArrowEl.addEventListener('click', function() {
+// funzione che gestisce il click della freccia indietro
+function prevArrowClick() {
     const activeEl = document.querySelector('.slide.active');
     activeEl.classList.remove('active');
     const activeDotEl = dotsEl.querySelector('.active');
@@ -106,7 +113,9 @@ prevArrowEl.addEventListener('click', function() {
         //dot
         lastDot.classList.add('active');
     }
-});
+}
+
+prevArrowEl.addEventListener('click', prevArrowClick);
 
 dotsEl.addEventListener('click', function(){
     let dotEl = dotsEl.querySelector(':hover');
@@ -131,3 +140,20 @@ dotsEl.addEventListener('click', function(){
         nextActiveDotEl.classList.add('active');
     }
 });
+
+dotsEl.addEventListener('mouseenter', slidesWrapperHover);
+dotsEl.addEventListener('mouseleave', slidesWrapperLeave);
+
+const arrowsEl = document.querySelector('.arrows');
+arrowsEl.addEventListener('mouseenter', slidesWrapperHover);
+arrowsEl.addEventListener('mouseleave', slidesWrapperLeave);
+
+function slidesWrapperHover() {
+    clearInterval(clock);
+}
+
+function slidesWrapperLeave() {
+    clock = setInterval(nextArrowClick, 4000);
+}
+
+let clock = setInterval(nextArrowClick, 4000);
