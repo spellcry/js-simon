@@ -1,0 +1,136 @@
+/* #region Root */
+:root {
+    --carousel-height: 350px;
+}
+
+/* #endregion Root */
+
+/* #region Regole Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.slide img {
+    display: block;
+    width: 100%;
+    height: var(--carousel-height);
+    object-fit: cover;
+    object-position: center;
+}
+
+/* #endregion Regole Reset */
+
+/* #region Regole Layout */
+.container {
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+/* #endregion Regole Layout */
+
+/* #region Utilities */
+.slide.active {
+    opacity: 1;
+}
+
+/* #endregion Utilities */
+
+/* #region Slider */
+.slider {
+    position: relative;
+}
+
+.slides-wrapper {
+    position: relative;
+    height: var(--carousel-height);
+}
+
+.slide {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: opacity 300ms linear;
+}
+
+.slide:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 150ms linear;
+}
+
+.slider:hover .slide:before {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* #endregion Slider */
+
+/* #region Arrows */
+.arrows {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 1.75rem;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    color: rgba(255, 140, 0, 0.4);
+    transition: color 150ms linear;
+    cursor: pointer;
+}
+
+.slider:hover .arrows {
+    color: rgba(255, 140, 0, 1);
+}
+
+/* #endregion Arrows */
+
+/* #region Dots */
+.dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dot {
+    width: 10px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 150ms linear;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: rgba(255, 140, 0, 0.4);
+    transition: background-color 150ms linear;
+}
+
+.slider:hover .dot.active {
+    background-color: rgba(255, 140, 0, 1);
+}
+
+.slider:hover .dot {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* #endregion Dots */
