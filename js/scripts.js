@@ -102,4 +102,4 @@ mostraNumeri();
 setTimeout(() => {
     let numeriIndovinati = getArrayNumeriIndovinati();
     stampaRisultato(numeriIndovinati);
-}, 3000);
+}, 30000);
