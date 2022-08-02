@@ -91,6 +91,10 @@ ul {
     transform: translateY(-50%);
     color: rgba(255, 140, 0, 0.4);
     transition: color 150ms linear;
+}
+
+.arrow-prev,
+.arrow-next {
     cursor: pointer;
 }
 
